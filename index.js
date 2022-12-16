@@ -74,14 +74,21 @@ let available_halls = [
   app.post('/hall/create', (req, res) => {
     let id = available_halls.length + 1;
     req.body.hall_id = id;
-    available_halls.push({
-      hall_name: req.body.hall_name,
-      hall_id: req.body.hall_id,
-      seats: req.body.seats,
-      amenities: req.body.amenities,
-      price_per_hour: req.body.price_per_hour,
-    });
-    res.status(201).json(`Hall was created successfully Hall ID:${id}`);
+    try {
+      
+      available_halls.push({
+        hall_name: req.body.hall_name,
+        hall_id: req.body.hall_id,
+        seats: req.body.seats,
+        amenities: req.body.amenities,
+        price_per_hour: req.body.price_per_hour,
+      });
+      res.status(201).json(`Hall was created successfully Hall ID:${id}`);
+    } catch (error) {
+      
+      console.log(error);
+      res.status(400).send('Something Went wrong');
+    }
   });
   
 
