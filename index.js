@@ -148,7 +148,7 @@ let available_halls = [
       hallBook.end_time = customer.end_time;
       hallArray.push(hallBook);
     });
-    if(customerArray)
+    if(hallArray)
     res.status(200).send(hallArray);
     else
     res.status(400).send("NO Hall Details Available");
